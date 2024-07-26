@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 export default function ErrorModal({ error, closeErrorModal }) {
-  console.log(error)
+  
   if (!error) {
     return null;
   }

@@ -3,6 +3,7 @@ import Counter from "./Counter";
 import { useAsyncFn } from "../../hooks/useAsync";
 import { createNewMatch } from "../../services/match";
 import {useNavigate} from "react-router-dom"
+import { useErrorPortalUpdate } from "../../contexts/ErrorPortalContext";
 
 export default function MatchSetup() {
   const [battingFirstTeamName, setBattingFirstTeamName] = useState("");
@@ -11,20 +12,25 @@ export default function MatchSetup() {
   const [totalPlayersPerTeam, setTotalPlayersPerTeam] = useState(5);
   const createNewMatchFn = useAsyncFn(createNewMatch);
   const navigate = useNavigate()
+  const {addError} = useErrorPortalUpdate()
 
   function handleSubmit(e) {
     e.preventDefault();
-    createNewMatchFn.execute({
-      battingFirstTeamName,
-      battingSecondTeamName,
-      totalOversPerInning,
-      totalPlayersPerTeam
-    })
-    .then(match => {
-      const matchId = match._id
-      const overId = match.battingFirstTeam.oversFaced[0]._id
-      navigate(`/umpire-scoreboard/matches/${matchId}/teams/battingFirstTeam/overs/${overId}`)
-    })
+    createNewMatchFn
+      .execute({
+        battingFirstTeamName,
+        battingSecondTeamName,
+        totalOversPerInning,
+        totalPlayersPerTeam,
+      })
+      .then((match) => {
+        const matchId = match._id;
+        const overId = match.battingFirstTeam.oversFaced[0]._id;
+        navigate(
+          `/umpire-scoreboard/matches/${matchId}/teams/battingFirstTeam/overs/${overId}`
+        );
+      })
+      .catch((message) => addError(message));
   }
 
   return (
@@ -54,7 +60,7 @@ export default function MatchSetup() {
           setValue={setTotalPlayersPerTeam}
         />
         <button>Create match</button>
-        {createNewMatchFn.error && <div>{createNewMatchFn.error}</div>}
+        
       </form>
     </div>
   );

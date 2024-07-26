@@ -9,7 +9,7 @@ import OverDetail from '../../components/Scoreboard/OverDetail';
 
 
 export default function SpectatorScoreboard() {
-  const { match, isMatchActive } = useScoreboard();
+  const { match } = useScoreboard();
   const { score, isFirstInningComplete, isSecongInningComplete } =
     useListenScoreboardChanges(match);
   useSpectatorSocket(); 

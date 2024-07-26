@@ -16,6 +16,7 @@ export function SettingsProvider({ children }) {
     countNoBallOnWicket: true,
   });
 
+  
   function updateSettings(key, value) {
     setSettings((prevSettings) => ({ ...prevSettings, [key]: value }));
   }

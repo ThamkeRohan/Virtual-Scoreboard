@@ -183,12 +183,24 @@ export default function ScoreUpdater({
       </div>
       <div className="manage-deliveries-section">
         <div className="remove-prev-delivery">
-          <button disabled={isLoading || isRemoveBtnDisabled} onClick={removePrevDelivery}>
+          <button
+            disabled={
+              match.matchStatus === "completed" ||
+              isLoading ||
+              isRemoveBtnDisabled
+            }
+            onClick={removePrevDelivery}
+          >
             Remove previous delivery
           </button>
         </div>
         <div className="add-new-delivery">
-          <button disabled={isLoading || isAddBtnDisabled} onClick={addNewDelivery}>
+          <button
+            disabled={
+              match.matchStatus === "completed" || isLoading || isAddBtnDisabled
+            }
+            onClick={addNewDelivery}
+          >
             Add {getDeliveryText(currentDelivery)}
           </button>
         </div>

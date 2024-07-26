@@ -5,6 +5,7 @@ import MatchCard from '../../components/MatchCard'
 import { useParams } from 'react-router-dom'
 import Loading from '../../components/Loading'
 import ErrorMessage from '../../components/Error/ErrorMessage'
+import NoMatchFound from '../../components/NoMatchFound'
 
 export default function MatchesByUmpire() {
     const {umpireId} = useParams()
@@ -15,6 +16,9 @@ export default function MatchesByUmpire() {
     }
     if(error) {
         return <ErrorMessage error={error}/>
+    }
+    if(matches.length === 0) {
+        return <NoMatchFound/>
     }
   return (
     <div className='matches-by-umpire'>

@@ -9,14 +9,23 @@ import {
 import MatchCard from ".././../components/MatchCard";
 import ErrorMessage from "../../components/Error/ErrorMessage";
 import Loading from "../../components/Loading";
+import NoMatchFound from "../../components/NoMatchFound";
 
 export default function Matches() {
+  const today = new Date();
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(today.getDate() - 7);
+
   const [filter, setFilter] = useState({
     category: "all",
-    fromDate: getYearMonthDayFormattedDate(new Date()),
-    toDate: getYearMonthDayFormattedDate(new Date()),
+    fromDate: getYearMonthDayFormattedDate(oneWeekAgo),
+    toDate: getYearMonthDayFormattedDate(today),
   });
-  const {loading, error, value: matches} = useAsync(() => getMatches(filter), [filter])
+  const {
+    loading,
+    error,
+    value: matches,
+  } = useAsync(() => getMatches(filter), [filter]);
 
   function handleFilterChange(e) {
     setFilter((prevFilter) => ({
@@ -25,16 +34,15 @@ export default function Matches() {
     }));
   }
 
-
   return (
     <div className="matches">
       <FilterForm filter={filter} onFilterChange={handleFilterChange} />
       <div>
         {loading ? (
-          <Loading/>
+          <Loading />
         ) : error ? (
-          <ErrorMessage error={error}/>
-        ) : (
+          <ErrorMessage error={error} />
+        ) : matches.length > 0 ? (
           <>
             <h1>{`${filter.category} matches ${
               filter.fromDate === filter.toDate
@@ -48,6 +56,8 @@ export default function Matches() {
               <MatchCard key={match._id} match={match} />
             ))}
           </>
+        ) : (
+          <NoMatchFound />
         )}
       </div>
     </div>

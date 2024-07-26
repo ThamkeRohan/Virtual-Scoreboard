@@ -21,27 +21,31 @@ export default function useSpectatorSocket() {
     setSocket(newSocket);
     console.log("Spectator socket connected");
 
+    function disconnectSocket(errMessage) {
+      console.log("Spectator socket closed");
+      console.log(errMessage);
+      addError(errMessage);
+      newSocket.close();
+      setSocket(null);
+    }
+
     function handleOversUpdated({ action, position, delivery }) {
       if (action === "push") {
         pushDeliveryLocally(delivery, position);
       } else if (action === "pop") {
         popDeliveryLocally(position);
       } else {
-        addError("Incorrect action. Disconnecting socket");
-        newSocket.disconnect();
+        disconnectSocket("Incorrect action");
       }
-    };
+    }
 
     function handleConnectError(err) {
-      addError(err.message);
-      console.log("Disconnecting socket");
-      newSocket.disconnect();
-    };
+      disconnectSocket(err.message);
+    }
 
     function handleUmpireDisconnected() {
-      addError("Umpire disconnected. Disconnecting socket");
-      newSocket.disconnect();
-    };
+      disconnectSocket("Umpire disconnected");
+    }
 
     newSocket.on("overs-updated", handleOversUpdated);
     newSocket.on("connect_error", handleConnectError);
@@ -49,11 +53,11 @@ export default function useSpectatorSocket() {
 
     return () => {
       if (newSocket) {
-        console.log("Closing spectator socket");
         newSocket.off("overs-updated", handleOversUpdated);
         newSocket.off("connect_error", handleConnectError);
         newSocket.off("umpire-disconnected", handleUmpireDisconnected);
         newSocket.close();
+        console.log("Spectator socket closed in cleanup");
       }
       setSocket(null);
     };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { settings } from "../data/settings";
+// import { settings } from "../data/settings";
 import { getTeamScore, isInningsComplete } from "../utils/scoreboard";
+import { useSettings } from "../contexts/SettingsContext";
 
 const BALLS_PER_OVER = 6;
 
@@ -25,7 +26,7 @@ export default function useListenScoreboardChanges(match) {
   });
   const [isFirstInningComplete, setIsFirstInningComplete] = useState(false);
   const [isSecongInningComplete, setIsSecondInningComplete] = useState(false);
-  
+  const {settings} = useSettings()
   useEffect(() => {
     setScore((prevScore) => ({
       ...prevScore,

@@ -22,6 +22,7 @@ export function getTeamScore(settings, overs) {
           delivery.type === "no" &&
           delivery.isWicket
         ) {
+          
           legalDeliveries += 1;
           legalDeliveriesPerOver[overIndex] += 1;
         }

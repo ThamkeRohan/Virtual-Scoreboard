@@ -21,16 +21,18 @@ export default function useUmpireSocket() {
     console.log("Umpire socket connected");
 
     function handleConnectError(err) {
+      console.log("Umpire socket disconnected");
+      console.log(err.message)
       addError(err.message);
-      console.log("Disconnecting socket");
-      socket.disconnect();
+      socket.close();
+      setSocket(null)
     }
     newSocket.on("connect_error", handleConnectError);
 
     return () => {
       if (newSocket) {
         newSocket.off("connect_error", handleConnectError);
-        console.log("Closing umpire socket");
+        console.log("Umpire socket closed in cleanup");
         newSocket.close();
       }
       setSocket(null);
