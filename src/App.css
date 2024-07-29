@@ -112,12 +112,9 @@ img {
   height: calc(100vh - 63px);
   padding: 0.5rem 1rem;
   background-color: var(--dark-gray);
-  transform: translateX(100%);
-  transition: 0.5s;
+  border-top: 1px solid var(--light-gray);
 }
-.navbar.show {
-  transform: translateX(0);
-}
+
 .navbar ul li{
  padding: 0.3rem 0.5rem;
 }
@@ -179,7 +176,7 @@ img {
 .filter label {
   display: inline-block;
   color: var(--gray);
-  width: 8rem;
+  width: 10rem;
   
 }
 .filter input, .filter select {
@@ -187,6 +184,7 @@ img {
   padding: 0.2rem 0.4rem;
   border-radius: 6px;
   border: 1px solid var(--gray);
+  min-width: 10rem;
 }
 
 
@@ -287,11 +285,10 @@ img {
 }
 .scoreboard .match-score {
   display: flex;
+  justify-content: space-around;
   margin-bottom: 0.5rem;
 }
 .scoreboard .team {
-  flex-basis: 0;
-  flex-grow: 1;
   text-align: center;
   text-transform: uppercase;
 }
@@ -342,7 +339,7 @@ img {
 }
 .score-updater .type, .score-updater .wicket, .score-updater .runs {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.5rem;
   padding: 0.3rem;
 }
 .score-updater .controls-container {
@@ -376,6 +373,7 @@ img {
 /* Delivery */
 .over-detail {
   display: flex;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem 0;
@@ -626,23 +624,46 @@ img {
     margin-top: 30px;
   }
 
+  .scoreboard .match-score {
+    justify-content: space-between;
+  }
+  .over-detail {
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    height: 8rem;
+  }
+  .scoreboard .delivery {
+    min-width: 3rem;
+    height: 3rem;
+  }
+  
+
+  
+
 
   .container {
-    padding: 0 15px;
+    padding: 0 8px;
   }
+  .container-md {
+    padding: 0 8px;
+  }
+  .container-sm {
+    padding: 0 8px;
+  }
+
   .text-xxl-bold {
-    font-size: 2.6rem;
+    font-size: 2.5rem;
   }
   .text-xl-bold {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
   .text-lg-bold {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   .text-normal-bold {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   .text-md-bold {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }

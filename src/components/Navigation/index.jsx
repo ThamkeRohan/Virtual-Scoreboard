@@ -21,47 +21,53 @@ export default function Navigation() {
         )}
       </button>
 
-      <nav className={`navbar text-normal-bold ${showMenu ? "show" : "hide"}`}>
-        <ul>
-          <li>
-            <NavLink to="/matches">All Matches</NavLink>
-          </li>
-
-          {!isAuthenticated && (
+      {showMenu && (
+        <nav className={`navbar text-normal-bold`}>
+          <ul>
             <li>
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/matches">All Matches</NavLink>
             </li>
-          )}
 
-          {!isAuthenticated && (
-            <li>
-              <NavLink to="/signup">Signup</NavLink>
-            </li>
-          )}
+            {!isAuthenticated && (
+              <li>
+                <NavLink to="/login">Login</NavLink>
+              </li>
+            )}
 
-          {isAuthenticated && (
-            <li>
-              <NavLink to="/match-setup">Start New Match</NavLink>
-            </li>
-          )}
+            {!isAuthenticated && (
+              <li>
+                <NavLink to="/signup">Signup</NavLink>
+              </li>
+            )}
 
-          {isAuthenticated && (
-            <li>
-              <NavLink to={`/matches/umpires/${umpire._id}`}>
-                Matches Created By Me
-              </NavLink>
-            </li>
-          )}
+            {isAuthenticated && (
+              <li>
+                <NavLink to="/match-setup">Start New Match</NavLink>
+              </li>
+            )}
 
-          {isAuthenticated && (
-            <li>
-              <button type="button" onClick={logout} className="btn logout-btn">
-                Logout
-              </button>
-            </li>
-          )}
-        </ul>
-      </nav>
+            {isAuthenticated && (
+              <li>
+                <NavLink to={`/matches/umpires/${umpire._id}`}>
+                  Matches Created By Me
+                </NavLink>
+              </li>
+            )}
+
+            {isAuthenticated && (
+              <li>
+                <button
+                  type="button"
+                  onClick={logout}
+                  className="btn logout-btn"
+                >
+                  Logout
+                </button>
+              </li>
+            )}
+          </ul>
+        </nav>
+      )}
     </>
   );
 }
