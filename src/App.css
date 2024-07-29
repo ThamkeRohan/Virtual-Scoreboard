@@ -330,6 +330,11 @@ img {
 .scoreboard .scoreboard-navigation .overs-nav > div.active {
   border-bottom: 3px solid var(--gray);
 }
+.scoreboard .match-confirmation-btn {
+  color: var(--dark-green);
+  border: 1px solid var(--dark-green);
+  background-color: var(--light-green);
+}
 
 /* Score Updater */
 .score-updater {

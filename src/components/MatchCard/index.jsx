@@ -62,7 +62,7 @@ export default function MatchCard({ match }) {
                 {match.matchStatus === "pending" ? (
                   <span className="material-symbols-outlined pending">pending</span>
                 ) : (
-                  <span class="material-symbols-outlined completed">
+                  <span className="material-symbols-outlined completed">
                     task_alt
                   </span>
                 )}

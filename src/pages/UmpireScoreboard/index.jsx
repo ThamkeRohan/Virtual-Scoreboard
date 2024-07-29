@@ -81,11 +81,6 @@ export default function UmpireScoreboard() {
 
   return (
     <div className="container-md scoreboard">
-      {match.matchStatus === "pending" && isSecongInningComplete && (
-        <MarkMatchAsComplete
-          disconnectSocketOnError={disconnectSocketOnError}
-        />
-      )}
       <MatchScore score={score} />
       <RunRateTracker
         score={score}
@@ -104,6 +99,9 @@ export default function UmpireScoreboard() {
         isSecondInningComplete={isSecongInningComplete}
         isLoading={editMatchOversFn.loading}
       />
+      {match.matchStatus === "pending" && isSecongInningComplete && (
+        <MarkMatchAsComplete disconnectSocketOnError={disconnectSocketOnError}/>
+      )}
     </div>
   );
 }

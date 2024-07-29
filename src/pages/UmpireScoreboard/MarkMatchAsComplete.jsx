@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from "react-dom";
 import { markMatchAsCompleted } from '../../services/match'
 import {useAsyncFn} from "../../hooks/useAsync"
 import {useNavigate, useParams} from "react-router-dom"
@@ -15,10 +16,14 @@ export default function MarkMatchAsComplete({disconnectSocketOnError}) {
         .then(() => navigate(`/matches/umpires/${umpire._id}`))
         .catch(error => disconnectSocketOnError(error))
     }
-  return (
-    <div>
-      <p>Is match finished?</p>
-      <button type='button' onClick={handleMatchCompleted}>Yes</button>
-    </div>
-  )
+  
+    return (
+      <button
+        type="button"
+        onClick={handleMatchCompleted}
+        className="btn btn-block match-confirmation-btn"
+      >
+        Mark match as completed
+      </button>
+    );
 }
