@@ -5,13 +5,13 @@ export default function ProfileBadge() {
   const { umpire } = useAuth();
   return (
     <div className="profile-badge">
-      <div>
+      <div className="profile-pic">
         <img
           src={`${window.location.origin}/assets/avatars/${umpire.profilePicUrl}`}
           alt="profile-image"
         />
       </div>
-      <p>{umpire.umpireName}</p>
+      <p className="profile-name">{umpire.umpireName}</p>
     </div>
   );
 }

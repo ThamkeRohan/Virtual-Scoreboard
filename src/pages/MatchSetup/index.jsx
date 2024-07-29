@@ -35,33 +35,36 @@ export default function MatchSetup() {
 
   return (
     <div className="match-setup">
-      <h1>Match setup</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Batting first team name"
-          value={battingFirstTeamName}
-          onChange={(e) => setBattingFirstTeamName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Batting second team name"
-          value={battingSecondTeamName}
-          onChange={(e) => setBattingSecondTeamName(e.target.value)}
-        />
-        <Counter
-          label="Overs"
-          value={totalOversPerInning}
-          setValue={setTotalOversPerInning}
-        />
-        <Counter
-          label="Team players"
-          value={totalPlayersPerTeam}
-          setValue={setTotalPlayersPerTeam}
-        />
-        <button>Create match</button>
-        
-      </form>
+      <div className="container-sm">
+        <h1 className="page-heading text-xl-bold">Match setup</h1>
+        <form onSubmit={handleSubmit} className="form">
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Batting first team name"
+            value={battingFirstTeamName}
+            onChange={(e) => setBattingFirstTeamName(e.target.value)}
+          />
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Batting second team name"
+            value={battingSecondTeamName}
+            onChange={(e) => setBattingSecondTeamName(e.target.value)}
+          />
+          <Counter
+            label="Overs"
+            value={totalOversPerInning}
+            setValue={setTotalOversPerInning}
+          />
+          <Counter
+            label="Team players"
+            value={totalPlayersPerTeam}
+            setValue={setTotalPlayersPerTeam}
+          />
+          <button className="btn btn-block submit-btn">Create match</button>
+        </form>
+      </div>
     </div>
   );
 }

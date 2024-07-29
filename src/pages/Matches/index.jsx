@@ -13,6 +13,7 @@ import NoMatchFound from "../../components/NoMatchFound";
 
 export default function Matches() {
   const today = new Date();
+  
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(today.getDate() - 7);
 
@@ -21,6 +22,7 @@ export default function Matches() {
     fromDate: getYearMonthDayFormattedDate(oneWeekAgo),
     toDate: getYearMonthDayFormattedDate(today),
   });
+  
   const {
     loading,
     error,
@@ -34,31 +36,34 @@ export default function Matches() {
     }));
   }
 
+
   return (
     <div className="matches">
-      <FilterForm filter={filter} onFilterChange={handleFilterChange} />
-      <div>
-        {loading ? (
-          <Loading />
-        ) : error ? (
-          <ErrorMessage error={error} />
-        ) : matches.length > 0 ? (
-          <>
-            <h1>{`${filter.category} matches ${
-              filter.fromDate === filter.toDate
-                ? `on ${getMonthNameDayYearFormattedDate(filter.fromDate)}`
-                : `from ${getMonthNameDayYearFormattedDate(
-                    filter.fromDate
-                  )} to ${getMonthNameDayYearFormattedDate(filter.toDate)}`
-            }`}</h1>
+      <div className="container">
+        <FilterForm filter={filter} onFilterChange={handleFilterChange} />
+        <div>
+          {loading ? (
+            <Loading />
+          ) : error ? (
+            <ErrorMessage error={error} />
+          ) : matches.length > 0 ? (
+            <>
+              <h1 className="page-heading text-xl-bold">{`${filter.category} matches ${
+                filter.fromDate === filter.toDate
+                  ? `on ${getMonthNameDayYearFormattedDate(filter.fromDate)}`
+                  : `from ${getMonthNameDayYearFormattedDate(
+                      filter.fromDate
+                    )} to ${getMonthNameDayYearFormattedDate(filter.toDate)}`
+              }`}</h1>
 
-            {matches.map((match) => (
-              <MatchCard key={match._id} match={match} />
-            ))}
-          </>
-        ) : (
-          <NoMatchFound />
-        )}
+              {matches.map((match) => (
+                <MatchCard key={match._id} match={match} />
+              ))}
+            </>
+          ) : (
+            <NoMatchFound />
+          )}
+        </div>
       </div>
     </div>
   );

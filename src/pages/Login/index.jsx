@@ -22,23 +22,31 @@ export default function Login() {
   }
   return (
     <div className="signup">
-      <h1>Login</h1>
-      <form className="input-box" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Umpire name"
-          value={umpireName}
-          onChange={(e) => setUmpireName(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button disabled={loginFn.loading}>submit</button>
-        
-      </form>
+      <div className="container-sm">
+        <h1 className="page-heading text-xl-bold">Login</h1>
+        <form className="form" onSubmit={handleSubmit}>
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Umpire name"
+            value={umpireName}
+            onChange={(e) => setUmpireName(e.target.value)}
+          />
+          <input
+            className="form-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            disabled={loginFn.loading}
+            className="btn btn-block submit-btn"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -9,33 +9,28 @@ import { ScoreboardProvider } from "../../contexts/ScoreboardContext";
 import UmpireScoreboard from "../../pages/UmpireScoreboard";
 import SpectatorScoreboard from "../../pages/SpectatorScoreboard";
 import { useAuth } from ".././../contexts/AuthContext";
-import Settings from "../../pages/Settings";
+import Home from "../../pages/Home";
 
 export default function AppRoutes() {
   const { isAuthenticated } = useAuth();
   return (
     <>
       <Routes>
-        <Route path="/" element={<Matches />} />
-
+        <Route path="/" element={<Home />} />
+        <Route path="/matches" element={<Matches />} />
         <Route
           path="/signup"
-          element={!isAuthenticated ? <Signup /> : <Navigate to="/" />}
+          element={!isAuthenticated ? <Signup /> : <Navigate to="/matches" />}
         />
 
         <Route
           path="/login"
-          element={!isAuthenticated ? <Login /> : <Navigate to="/" />}
+          element={!isAuthenticated ? <Login /> : <Navigate to="/matches" />}
         />
 
         <Route
           path="/match-setup"
           element={isAuthenticated ? <MatchSetup /> : <Navigate to="/login" />}
-        />
-
-        <Route 
-            path="/settings"
-            element={<Settings/>}
         />
 
         <Route

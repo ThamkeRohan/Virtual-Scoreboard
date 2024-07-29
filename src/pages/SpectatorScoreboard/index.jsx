@@ -16,7 +16,7 @@ export default function SpectatorScoreboard() {
   
 
   return (
-    <div>
+    <div className='container-md scoreboard'>
       <MatchScore score={score} />
       <RunRateTracker
         score={score}

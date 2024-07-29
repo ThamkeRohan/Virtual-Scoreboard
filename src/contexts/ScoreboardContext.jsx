@@ -71,7 +71,7 @@ export function ScoreboardProvider({ children }) {
     return <Loading/>;
   }
   if (error) {
-    return <ErrorMessage message={error}/>;
+    return <ErrorMessage error={error}/>;
   }
   
   if(match == null) {

@@ -1,15 +1,15 @@
 import React from 'react'
 
-export default function ErrorMessage({message}) {
+export default function ErrorMessage({error}) {
   return (
-    <div className="error-message">
-      <div>
-        <img
-          src={`${window.location.origin}/assets/icons/error.png`}
-          alt="error"
-        />
+    <div className="error">
+      <div className="error-logo">
+        <span class="material-symbols-outlined error-icon text-xxl-bold">
+          error
+        </span>
+        <p className="text-xl-bold">Error</p>
       </div>
-      <p className="message">{message}</p>
+      <p className="error-msg text-md">{error}</p>
     </div>
   );
 }

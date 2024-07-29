@@ -9,16 +9,19 @@ export default function ErrorModal({ error, closeErrorModal }) {
 
   return ReactDOM.createPortal(
     <div className="error-modal">
-      <div>
+      <div className="error-background"></div>
+      <div className="error">
         <div>
-          <img
-            src={`${window.location.origin}/assets/icons/error.png`}
-            alt="error"
-          />
+          <div className="error-logo">
+            <span class="material-symbols-outlined error-icon text-xxl-bold">
+              error
+            </span>
+            <p className="text-xl-bold">Error</p>
+          </div>
+          <p className="error-msg text-md">{error}</p>
         </div>
-        <p>{error}</p>
+        <button onClick={closeErrorModal} className="btn">Close</button>
       </div>
-      <button onClick={closeErrorModal}>close</button>
     </div>,
     document.getElementById("portal")
   );

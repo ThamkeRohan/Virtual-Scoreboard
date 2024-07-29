@@ -9,6 +9,7 @@ import ErrorModal from "./components/Error/ErrorModal";
 import AppRoutes from "./components/AppRoutes";
 import ProfileBadge from "./components/ProfileBadge";
 import { useAuth } from "./contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 function App() {
   const { error } = useErrorPortal();
@@ -16,9 +17,16 @@ function App() {
   const { closeError } = useErrorPortalUpdate();
   return (
     <>
-      <header>
-        {isAuthenticated && <ProfileBadge/>}
-        <Navigation />
+      <header className="app-header">
+        <div className="container">
+          <h1 className="app-title text-lg-bold">
+            <Link to="/">VirtualScoreboard</Link>
+          </h1>
+          <div>
+            {isAuthenticated && <ProfileBadge />}
+            <Navigation />
+          </div>
+        </div>
       </header>
 
       <AppRoutes />

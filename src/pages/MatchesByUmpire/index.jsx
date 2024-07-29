@@ -20,12 +20,17 @@ export default function MatchesByUmpire() {
     if(matches.length === 0) {
         return <NoMatchFound/>
     }
+    
   return (
-    <div className='matches-by-umpire'>
-        <h1>Matches created by you</h1>
+    <div className="matches-by-umpire">
+      <div className="container">
+        <h1 className="page-heading text-xl-bold">Matches created by you</h1>
         <div className="matches">
-            {matches.map(match => <MatchCard key={match._id} match={match}/>)}
+          {matches.map((match) => (
+            <MatchCard key={match._id} match={match} />
+          ))}
         </div>
+      </div>
     </div>
-  )
+  );
 }

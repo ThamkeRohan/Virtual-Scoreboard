@@ -11,19 +11,19 @@ export default function TeamScore({
 }) {
   return (
     <div className="team">
-      <p className="team-name">{teamName}</p>
+      <p className="team-name text-md-bold">{teamName}</p>
       {totalDeliveries > 0 ? (
-        <>
-          <div className="team-score">
-            <span className="runs">{runs}/</span>
-            <span className="wicket">{wickets}</span>
+        <div className="team-score text-md-bold">
+          <div className="runs-wickets">
+            <span>{runs}/</span>
+            <span>{wickets}</span>
           </div>
-          <div className="overs">
-            {`${Math.floor(legalDeliveries / BALLS_PER_OVER)}.${
+          <div className="overs text-sm-bold">
+            {`(${Math.floor(legalDeliveries / BALLS_PER_OVER)}.${
               legalDeliveries % BALLS_PER_OVER
-            }`}
+            })`}
           </div>
-        </>
+        </div>
       ) : (
         <div>Yet to bat</div>
       )}
