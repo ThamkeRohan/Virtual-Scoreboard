@@ -52,16 +52,21 @@ export default function MatchSetup() {
             value={battingSecondTeamName}
             onChange={(e) => setBattingSecondTeamName(e.target.value)}
           />
-          <Counter
-            label="Overs"
+          <input
+            className="form-input"
+            type="number"
+            placeholder="Overs per inning"
             value={totalOversPerInning}
-            setValue={setTotalOversPerInning}
+            onChange={(e) => setTotalOversPerInning(e.target.value)}
           />
-          <Counter
-            label="Team players"
+          <input
+            className="form-input"
+            type="number"
+            placeholder="Players per team"
             value={totalPlayersPerTeam}
-            setValue={setTotalPlayersPerTeam}
+            onChange={(e) => setTotalPlayersPerTeam(e.target.value)}
           />
+
           <button className="btn btn-block submit-btn">Create match</button>
         </form>
       </div>
