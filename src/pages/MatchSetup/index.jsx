@@ -8,8 +8,8 @@ import { useErrorPortalUpdate } from "../../contexts/ErrorPortalContext";
 export default function MatchSetup() {
   const [battingFirstTeamName, setBattingFirstTeamName] = useState("");
   const [battingSecondTeamName, setBattingSecondTeamName] = useState("");
-  const [totalOversPerInning, setTotalOversPerInning] = useState(4);
-  const [totalPlayersPerTeam, setTotalPlayersPerTeam] = useState(5);
+  const [totalOversPerInning, setTotalOversPerInning] = useState();
+  const [totalPlayersPerTeam, setTotalPlayersPerTeam] = useState();
   const createNewMatchFn = useAsyncFn(createNewMatch);
   const navigate = useNavigate()
   const {addError} = useErrorPortalUpdate()
