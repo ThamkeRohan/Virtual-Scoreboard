@@ -1,19 +1,9 @@
 import { makeRequest } from "./makeRequest";
 
-export function createNewMatch({
-  battingFirstTeamName,
-  battingSecondTeamName,
-  totalOversPerInning,
-  totalPlayersPerTeam,
-}) {
+export function createNewMatch(matchDetails) {
   return makeRequest(`matches`, {
     method: "POST",
-    data: {
-      battingFirstTeamName,
-      battingSecondTeamName,
-      totalOversPerInning: Number(totalOversPerInning),
-      totalPlayersPerTeam: Number(totalPlayersPerTeam),
-    },
+    data: matchDetails,
   });
 }
 

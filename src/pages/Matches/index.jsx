@@ -12,6 +12,8 @@ import Loading from "../../components/Loading";
 import NoMatchFound from "../../components/NoMatchFound";
 
 export default function Matches() {
+
+  // Default date values
   const today = new Date();
   
   const oneWeekAgo = new Date();
@@ -22,12 +24,27 @@ export default function Matches() {
     fromDate: getYearMonthDayFormattedDate(oneWeekAgo),
     toDate: getYearMonthDayFormattedDate(today),
   });
+
+
+  const localFromDate = new Date(filter.fromDate)
+  localFromDate.setHours(0, 0, 0, 0);
+
+  const localToDate = new Date(filter.toDate)
+  localToDate.setHours(23, 59, 59, 999);
   
   const {
     loading,
     error,
     value: matches,
-  } = useAsync(() => getMatches(filter), [filter]);
+  } = useAsync(
+    () =>
+      getMatches({
+        category: filter.category,
+        fromDate: localFromDate.toISOString(),
+        toDate: localToDate.toISOString(),
+      }),
+    [filter.category, filter.fromDate, filter.toDate]
+  );
 
   function handleFilterChange(e) {
     setFilter((prevFilter) => ({

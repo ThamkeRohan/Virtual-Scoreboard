@@ -28,10 +28,12 @@ export default function ScoreboardNavigation({ scoreboardType }) {
       </ul>
       <ul className="overs-nav">
         {match[team].oversFaced.map((over, overIndex) => (
-          <div className={`${over._id === overId ? "active" : ""}`}>
+          <div
+            key={over._id}
+            className={`${over._id === overId ? "active" : ""}`}
+          >
             <Link
               className="text-md-bold"
-              key={over._id}
               to={`/${scoreboardType}/matches/${matchId}/teams/${team}/overs/${over._id}`}
             >
               {overIndex + 1}

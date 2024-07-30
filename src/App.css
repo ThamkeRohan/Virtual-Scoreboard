@@ -125,9 +125,7 @@ img {
 .navbar ul a:hover {
   color: var(--crimson);
 }
-.navbar a.active {
-  border-bottom: 2px solid var(--crimson);
-}
+
 
 
 /* Home */
@@ -236,8 +234,10 @@ img {
 .match-setup .counter .counter-input {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  /* margin: 0.5rem 0; */
+  gap: 15px;
+}
+.match-setup .counter input {
+  max-width: calc(100% - 110px);
 }
 
 .match-setup .counter .counter-btn {
@@ -435,6 +435,11 @@ img {
   height: 100px;
   margin: 50px auto;
 }
+.btn-loading {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+}
 
 /* Error */
 .error-modal {
@@ -525,6 +530,7 @@ img {
   background-color: var(--light-crimson);
   border: 1px solid var(--crimson);
   font-size: 1.2rem;
+  height: 55px;
 }
 
 /* Form */

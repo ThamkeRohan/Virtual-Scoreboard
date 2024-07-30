@@ -5,6 +5,7 @@ import { useAuthUpdate } from "../../contexts/AuthContext";
 import { profilePics } from "../../data/profilePics";
 import ProfilePic from "./ProfilePic";
 import { useErrorPortalUpdate } from "../../contexts/ErrorPortalContext";
+import Loading from "../../components/Loading";
 
 export default function Signup() {
   const [selectedProfilePic, setSelectedProfilePic] = useState("bee.png");
@@ -65,7 +66,7 @@ export default function Signup() {
             disabled={signupFn.loading}
             className="btn btn-block submit-btn"
           >
-            Submit
+            {signupFn.loading ? <Loading isBtnLoading/> : "Submit" }
           </button>
         </form>
       </div>

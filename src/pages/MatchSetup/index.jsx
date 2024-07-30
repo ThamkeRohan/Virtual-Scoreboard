@@ -2,20 +2,33 @@ import React, { useState } from "react";
 import Counter from "./Counter";
 import { useAsyncFn } from "../../hooks/useAsync";
 import { createNewMatch } from "../../services/match";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useErrorPortalUpdate } from "../../contexts/ErrorPortalContext";
+import Loading from "../../components/Loading";
 
 export default function MatchSetup() {
   const [battingFirstTeamName, setBattingFirstTeamName] = useState("");
   const [battingSecondTeamName, setBattingSecondTeamName] = useState("");
-  const [totalOversPerInning, setTotalOversPerInning] = useState();
-  const [totalPlayersPerTeam, setTotalPlayersPerTeam] = useState();
+  const [totalOversPerInning, setTotalOversPerInning] = useState(4);
+  const [totalPlayersPerTeam, setTotalPlayersPerTeam] = useState(5);
+
   const createNewMatchFn = useAsyncFn(createNewMatch);
-  const navigate = useNavigate()
-  const {addError} = useErrorPortalUpdate()
+  const navigate = useNavigate();
+  const { addError } = useErrorPortalUpdate();
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if(battingFirstTeamName.trim().length === 0 || battingSecondTeamName.trim().length === 0) {
+      return addError("All fields are required")
+    }
+    if(totalOversPerInning < 1) {
+      return addError("Total overs cannot be less than one")
+    }
+    if(totalPlayersPerTeam < 2) {
+      return addError("Total players cannot be less than two")
+    }
+
     createNewMatchFn
       .execute({
         battingFirstTeamName,
@@ -52,22 +65,22 @@ export default function MatchSetup() {
             value={battingSecondTeamName}
             onChange={(e) => setBattingSecondTeamName(e.target.value)}
           />
-          <input
-            className="form-input"
-            type="number"
-            placeholder="Overs per inning"
+          <Counter
+            label="Overs"
             value={totalOversPerInning}
-            onChange={(e) => setTotalOversPerInning(e.target.value)}
+            setValue={setTotalOversPerInning}
           />
-          <input
-            className="form-input"
-            type="number"
-            placeholder="Players per team"
+          <Counter
+            label="Total players"
             value={totalPlayersPerTeam}
-            onChange={(e) => setTotalPlayersPerTeam(e.target.value)}
+            setValue={setTotalPlayersPerTeam}
           />
 
-          <button className="btn btn-block submit-btn">Create match</button>
+          <button 
+          disabled={createNewMatchFn.loading}
+          className="btn btn-block submit-btn">
+            {createNewMatchFn.loading ? <Loading isBtnLoading/> : "Create new match"}
+          </button>
         </form>
       </div>
     </div>

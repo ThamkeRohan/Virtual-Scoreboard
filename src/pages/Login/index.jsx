@@ -3,6 +3,7 @@ import { useAsyncFn } from "../../hooks/useAsync";
 import { login } from "../../services/auth";
 import { useErrorPortalUpdate } from "../../contexts/ErrorPortalContext";
 import { useAuthUpdate } from "../../contexts/AuthContext";
+import Loading from "../../components/Loading";
 
 export default function Login() {
   const [umpireName, setUmpireName] = useState("");
@@ -43,7 +44,7 @@ export default function Login() {
             disabled={loginFn.loading}
             className="btn btn-block submit-btn"
           >
-            Submit
+            {loginFn.loading ? <Loading isBtnLoading/> : "Submit"}
           </button>
         </form>
       </div>

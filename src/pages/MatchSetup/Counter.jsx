@@ -21,7 +21,7 @@ export default function Counter({label, value, setValue}) {
           onChange={(e) => setValue(e.target.value)}
         />
         <button onClick={increment} type="button" className="counter-btn btn">
-          <span class="material-symbols-outlined">add</span>
+          <span className="material-symbols-outlined">add</span>
         </button>
       </div>
     </div>

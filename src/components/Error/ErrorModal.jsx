@@ -13,7 +13,7 @@ export default function ErrorModal({ error, closeErrorModal }) {
       <div className="error">
         <div>
           <div className="error-logo">
-            <span class="material-symbols-outlined error-icon text-xxl-bold">
+            <span className="material-symbols-outlined error-icon text-xxl-bold">
               error
             </span>
             <p className="text-xl-bold">Error</p>

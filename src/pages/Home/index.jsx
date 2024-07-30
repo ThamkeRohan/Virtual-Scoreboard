@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import {useAuth} from "../../contexts/AuthContext"
 
 export default function Home() {
+  const {isAuthenticated} = useAuth()
   return (
     <div className="home">
       <section className="hero">
@@ -18,8 +20,14 @@ export default function Home() {
             </p>
           </div>
           <div className="navigation-btns">
-            <Link to="/matches" className="btn text-md-bold">Search matches</Link>
-            <Link to="/signup" className="btn text-md-bold">Create an account</Link>
+            <Link to="/matches" className="btn text-md-bold">
+              Search matches
+            </Link>
+            {!isAuthenticated && (
+              <Link to="/signup" className="btn text-md-bold">
+                Create an account
+              </Link>
+            )}
           </div>
         </div>
       </section>
